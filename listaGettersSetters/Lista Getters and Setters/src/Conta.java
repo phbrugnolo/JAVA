@@ -8,7 +8,7 @@ public class Conta {
     public Conta(int numConta, String nome, float saldo){
         this.nome = nome;
         this.numConta = numConta;
-        this.saldo = 0f;
+        this.saldo = 0;
     }
 
     public void setNumConta(int num){

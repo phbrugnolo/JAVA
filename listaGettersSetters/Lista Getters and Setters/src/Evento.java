@@ -51,19 +51,25 @@ public class Evento {
     
     public String venderIG(){
         if(this.getQuantidadeIG() < this.getQuantidadeIGVendidos()){
-            return "A quantidade de ingressos disponiveis é inferior ao valor inserido";
+            return "A quantidade de ingressos disponiveis é inferior a quantidade disponivel";
         }else {
-            return "Foram vendidos " + this.getQuantidadeIGVendidos() + " de " + this.getQuantidadeIG() + "disponiveis";
+            return "Foram vendidos " + this.getQuantidadeIGVendidos() + " ingressos" + " de " + this.getQuantidadeIG() + " disponiveis";
         }
     }
 
     public String infoVendas(){
-        return 
-        "O nome do evento é " + this.getNome() +
-        "do dia " + this.getData() +
-        "\nA quantidade de ingressos disponiveis foi de " + this.getQuantidadeIG() +
-        " no valor de " + this.getPreco() +
-        "\nE a quantidade de ingressos vendidos foi de " + this.getQuantidadeIGVendidos() +
-        "\nE o lucro obtido no evento em R$ foi de " + (this.getQuantidadeIG() - this.getQuantidadeIGVendidos()) * this.getPreco();
+        if (this.getQuantidadeIG() < this.getQuantidadeIGVendidos()) {
+            return "Nao é possível calcular o lucro do evento pois a quantidade de ingressos vendidos é maior que a quantidade total de ingressos disponíveis. \n";
+        } else {
+            float lucro = this.getQuantidadeIGVendidos() * this.getPreco();
+            return 
+                "O nome do evento é " + this.getNome() +
+                " do dia " + this.getData() +
+                "\nA quantidade de ingressos disponíveis foi de " + this.getQuantidadeIG() +
+                " no valor de " + this.getPreco() +
+                "\nA quantidade de ingressos vendidos foi de " + this.getQuantidadeIGVendidos() +
+                "\n" + this.venderIG() + 
+                "\nE o lucro obtido no evento em R$ foi de " + lucro;
+        }
     }
 }
