@@ -38,12 +38,17 @@ public class App {
         Evento evento1 = new Evento(null, null, 0, 0, 0);
         System.out.println(evento1.infoVendas());
 
-        evento1.setNome("Pedro");
+        evento1.setNome("Pedrão");
         evento1.setData(LocalDate.now());
         evento1.setQuantidadeIG(200);
         evento1.setPreco(50);
         evento1.setQuantidadeIGVendidos(150);
 
         System.out.println("\n" + evento1.infoVendas());
+
+
+        Evento evento2 = new Evento("Elaine", LocalDate.now(), 20, 200, 75);
+
+        System.out.println("\n" + evento2.infoVendas());
     }
 }
