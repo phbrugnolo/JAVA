@@ -48,10 +48,10 @@ public class Reserva {
 
     public String exibir(){
         return 
-        "O nome do titular da reserva é " + this.getNome() +
-        "\nA qunatidade de pessoas é " + this.getNumPessoa() +
-        "\nA data da reserva foi " + this.getData() +
-        "\nE o valor da reserva foi de " + this.getValor() +
+        "O nome do titular da reserva é " + this.nome +
+        "\nA qunatidade de pessoas é " + this.numPessoa +
+        "\nA data da reserva foi " + this.data +
+        "\nE o valor da reserva foi de " + this.valor +
         "\nE o total foi de " + this.calculaValor();
     }
 

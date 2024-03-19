@@ -37,9 +37,9 @@ public class Conta {
 
     public String imprimir(){
         return 
-        "O nome do titular da conta é " + this.getNome() +
-        "\nO número do titular da conta é " + this.getNumConta() +
-        "\nO saldo atual é de R$ " + this.getSaldo();
+        "O nome do titular da conta é " + this.nome +
+        "\nO número do titular da conta é " + this.numConta +
+        "\nO saldo atual é de R$ " + this.saldo;
     }
 
     public boolean Sacar(float valor){
