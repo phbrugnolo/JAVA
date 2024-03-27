@@ -3,7 +3,6 @@ public class Carro {
     private String modelo;
     private int ano;
     private float velocidade;
-    private Boolean andando = false;
 
     public Carro(String marca, String modelo, int ano, float velocidade) {
         this.marca = marca;
@@ -49,6 +48,7 @@ public class Carro {
             velocidade += 20;
         } else {
             System.out.println("Você não pode acelerar um carro com velocidade negativa");
+            velocidade = 0;
         }
     }
 
@@ -56,16 +56,9 @@ public class Carro {
         velocidade -= 10;
     }
 
-    public boolean carroStatus() {
-        if (velocidade >= 1) {
-            return andando = true;
-        } else {
-            return andando = false;
-        }
-    }
 
     public String ligadoParado(){
-        if(carroStatus() == true){
+        if(velocidade >= 0){
             return "andando";
         }else {
             return "parado";
@@ -73,7 +66,7 @@ public class Carro {
     }
 
     public String info() {
-            return "Informações do carro \nMarca: " + marca + "\nModelo: " + modelo + "\nAno: " + ano + " \nEstado atual do carro é " + ligadoParado() + " e sua velocidade é de " + velocidade + " km/h";
+        return "Informações do carro \nMarca: " + marca + "\nModelo: " + modelo + "\nAno: " + ano + " \nEstado atual do carro é " + ligadoParado() + " e sua velocidade é de " + velocidade + " km/h";
     }
 
 
