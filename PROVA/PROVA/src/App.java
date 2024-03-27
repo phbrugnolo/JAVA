@@ -31,20 +31,16 @@ public class App {
         Aluno a1 = new Aluno("Aluno 1", 99, 0, 0);
         System.out.println(a1.exibirAluno(d1));
 
-        a1.setNotas1(4f);
-        a1.setNotas2(4f);
+        a1.setNota1(4f);
+        a1.setNota2(4f);
  
         System.out.println("\n" + a1.exibirAluno(d1));
         
         a1.setMedia(6);
         
-        
-        a1.setNotas1(8f);
-        a1.setNotas2(8f);
+        a1.setNota1(10f);
+        a1.setNota2(10f);
 
-
-
-        
         System.out.println("\n" + a1.exibirAluno(d1));
         
         

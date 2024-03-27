@@ -41,16 +41,27 @@ public class Aluno {
         return nota1;
     }
 
-    public void setNota1(float nota1) {
-        this.nota1 = nota1;
+    public void setNota1(float n1) {
+        float notaSet1 = nota1;
+        if(notaSet1 > n1){
+            nota1 = notaSet1;
+        }else{
+            nota1 = n1;
+        }
+        
     }
     
     public float getNota2() {
         return nota2;
     }
     
-    public void setNota2(float nota2) {
-        this.nota2 = nota2;
+    public void setNota2(float n2) {
+        float notaSet2 = nota2;
+        if(nota2 > n2){
+            nota2 = notaSet2;
+        }else{
+            nota2 = n2;
+        }
     }
     
     public float getMedia() {
@@ -59,16 +70,13 @@ public class Aluno {
 
     public String setMedia(float m) {
         if (m == media) {
-            this.media = m;
+            media = m;
             return "As medias são iguais";
         } else {
-            this.media = m;
+            media = m;
             return "A media e diferente da solicitada, use o metodo de calculaMedia() para calcular";
         }
     }
-
-
-
 
     public float calculaMedia(){
         return media = (nota1 + nota2) /2;
@@ -87,22 +95,5 @@ public class Aluno {
     public String exibirAluno(Disciplina d) {
         return "\nNome: " + nome + "\nIdade: " + idade + "\nEle está matriculado na máteria de " + d.getMateria() + " do professor " + d.getNome() + "\nMedia: " + calculaMedia() + " e sua situação atual é " + status();
     }
-
-    public void setNotas1(float n1){
-        if(nota1 < n1){
-            setNota1(n1);
-        }
-    }
-    
-    public void setNotas2(float n2){
-        if(nota2 < n2){
-            setNota2(n2);
-        }
-    }
-
-
-
-
-
     
 }
