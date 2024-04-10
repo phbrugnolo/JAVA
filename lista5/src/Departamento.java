@@ -40,6 +40,22 @@ public class Departamento {
             .findFirst()
             .orElse(null);
     }
+
+    public Funcionario buscaCPF(int cpf){
+        return funcionarios                
+            .stream()
+            .filter(d -> d.getCpf() == cpf)
+            .findFirst()
+            .orElse(null);
+    }
+
+    public void addFuncionario(Funcionario func){
+       if(buscarFuncionario(func.getNome()) == null && buscaCPF(func.getCpf()) == null) funcionarios.add(func);
+    }
+
+    public void removeFuncionario(Funcionario func){
+       if(buscarFuncionario(func.getNome()) != null) funcionarios.remove(func);
+    }
     
 
     

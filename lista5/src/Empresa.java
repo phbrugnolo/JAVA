@@ -15,15 +15,17 @@ public class Empresa {
         this.departamentos = departamentos;
     }
 
-    public void adicionarDerpatamento(Departamento dep){
-        if(buscarDepertamento(dep.getNome()) == null) departamentos.add(dep);
-    }
-    
-    public void removerDerpatamento(Departamento dep){
-        if(buscarDepertamento(dep.getNome()) != null) departamentos.remove(dep);
+    public void adicionarDerpatamento(Departamento dep) {
+        if (buscarDepertamento(dep.getNome()) == null)
+            departamentos.add(dep);
     }
 
-    public Departamento buscarDepertamento(String nome){
+    public void removerDerpatamento(Departamento dep) {
+        if (buscarDepertamento(dep.getNome()) != null)
+            departamentos.remove(dep);
+    }
+
+    public Departamento buscarDepertamento(String nome) {
         return departamentos
                 .stream()
                 .filter(d -> d.getNome().toLowerCase().equals(nome.toLowerCase()))
@@ -31,7 +33,7 @@ public class Empresa {
                 .orElse(null);
     }
 
-    public Funcionario buscarFuncionarioE(String nome){
+    public Funcionario buscarFuncionarioE(String nome) {
 
         for (Departamento d : departamentos) {
             return d.buscarFuncionario(nome);
@@ -39,15 +41,33 @@ public class Empresa {
         return null;
     }
 
+    public Funcionario buscarFuncionarioCPF(int cpf) {
 
-    
-    public void addFuncionario(Funcionario func, Departamento dep){
-        if(buscarDepertamento(dep.getNome()) != null){
-            if(buscarFuncionarioE(func.getNome()) != null){
-                
+        for (Departamento d : departamentos) {
+            return d.buscaCPF(cpf);
+        }
+        return null;
+    }
+
+    public void addFuncionario(Funcionario func, Departamento dep) {
+        if (buscarDepertamento(dep.getNome()) != null) {
+            if (buscarFuncionarioCPF(func.getCpf()) == null && buscarFuncionarioE(func.getNome()) == null) {
+                dep.addFuncionario(func);
             }
         }
     }
 
+    public void removerFuncionario(Funcionario func, Departamento dep) {
+        if (buscarDepertamento(dep.getNome()) != null) {
+            if (buscarFuncionarioE(func.getNome()) != null) {
+                dep.removeFuncionario(func);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa [departamentos=" + departamentos + "]";
+    }
 
 }
