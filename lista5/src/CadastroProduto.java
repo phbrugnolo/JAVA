@@ -2,12 +2,9 @@ import java.util.List;
 
 public class CadastroProduto {
     private List<Produto> produtos;
-    // private Produto prod;
 
-    public CadastroProduto(List<Produto> produtos, String nome) {
-
+    public CadastroProduto(List<Produto> produtos) {
         this.produtos = produtos;
-
     }
 
     public List<Produto> getProdutos() {
@@ -23,28 +20,41 @@ public class CadastroProduto {
         return "CadastroProduto [produtos=" + produtos + "]";
     }
 
-    public Produto buscarProd(int codigoBuscado) {
+    private int CriaCodigo(){
+        int res = 0;
+
+        for (Produto p : produtos) {
+            if(res <= p.getCodigo()){
+                res = p.getCodigo();
+            }
+        }
+
+        return ++res;
+    }
+
+    public Produto buscarProd(int codigo) {
         return produtos
                 .stream()
-                .filter(p -> p.getCodigo() == codigoBuscado)
+                .filter(p -> p.getCodigo() == codigo)
                 .findFirst()
                 .orElse(null);
     }
 
     public void addProduto(Produto prod) {
-        if (buscarProd(prod.getCodigo()) == null)
+        prod.setCodigo(CriaCodigo());
+        if (buscarProd(prod.getCodigo()) == null && buscarProdNome(prod.getNome()) == null)
             produtos.add(prod);
+            
     }
 
-    public void removeProduto(Produto prod) {
-        if (buscarProd(prod.getCodigo()) != null)
-            produtos.remove(prod);
+    public void removeProduto(int cod) {
+            produtos.remove(buscarProd(cod));
     }
 
-    public Produto buscarProdNome(String nomeProduto) {
+    public Produto buscarProdNome(String nome) {
         return produtos
                 .stream()
-                .filter(pn -> pn.getNome().equals(nomeProduto))
+                .filter(pn -> pn.getNome().equals(nome))
                 .findFirst()
                 .orElse(null);
     }
