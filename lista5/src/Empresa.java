@@ -7,11 +7,11 @@ public class Empresa {
         this.departamentos = departamentos;
     }
 
-    public List<Departamento> getdepartamentos() {
+    public List<Departamento> getDepartamentos() {
         return departamentos;
     }
 
-    public void setdepartamentos(List<Departamento> departamentos) {
+    public void setDepartamentos(List<Departamento> departamentos) {
         this.departamentos = departamentos;
     }
 
@@ -33,35 +33,29 @@ public class Empresa {
                 .orElse(null);
     }
 
-    public Funcionario buscarFuncionarioE(String nome) {
-
-        for (Departamento d : departamentos) {
-            return d.buscarFuncionario(nome);
-        }
-        return null;
-    }
-
     public Funcionario buscarFuncionarioCPF(int cpf) {
 
+        Funcionario func = null;
         for (Departamento d : departamentos) {
-            return d.buscaCPF(cpf);
+            func = d.buscaCPF(cpf);
         }
-        return null;
+        System.out.println("\n" + func + "\n");
+        return func;
     }
 
-    public void addFuncionario(Funcionario func, Departamento dep) {
-        if (buscarDepertamento(dep.getNome()) != null) {
-            if (buscarFuncionarioCPF(func.getCpf()) == null && buscarFuncionarioE(func.getNome()) == null) {
-                dep.addFuncionario(func);
-            }
+    public void addFuncionario(Funcionario func, String nomeDep) {
+
+        Departamento dep = buscarDepertamento(nomeDep);
+
+        if (buscarFuncionarioCPF(func.getCpf()) == null && dep != null) {
+            dep.addFuncionario(func);
         }
+
     }
 
-    public void removerFuncionario(Funcionario func, Departamento dep) {
-        if (buscarDepertamento(dep.getNome()) != null) {
-            if (buscarFuncionarioE(func.getNome()) != null) {
-                dep.removeFuncionario(func);
-            }
+    public void removerFuncionario(int cpf) {
+        for (Departamento d : departamentos) {
+           d.getFuncionarios().remove(buscarFuncionarioCPF(cpf));
         }
     }
 

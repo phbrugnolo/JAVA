@@ -4,9 +4,6 @@ public class Departamento {
     private String nome;
     private List<Funcionario> funcionarios;
 
-
-
-
     public Departamento(String nome, List<Funcionario> funcionarios) {
         this.nome = nome;
         this.funcionarios = funcionarios;
@@ -28,35 +25,35 @@ public class Departamento {
         this.nome = nome;
     }
 
+    public Funcionario buscarFuncionario(String nome) {
+        return funcionarios
+                .stream()
+                .filter(d -> d.getNome().toLowerCase().equals(nome.toLowerCase()))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Funcionario buscaCPF(int cpf) {
+        System.out.println("\n" + cpf + "\n" + funcionarios + "\n");
+        return funcionarios
+                .stream()
+                .filter(d -> d.getCpf().equals(cpf))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void addFuncionario(Funcionario func) {
+        if (buscarFuncionario(func.getNome()) == null && buscaCPF(func.getCpf()) == null)
+            funcionarios.add(func);
+    }
+
+    public void removeFuncionario(Funcionario func) {
+        if (buscarFuncionario(func.getNome()) != null)
+            funcionarios.remove(func);
+    }
+
     @Override
     public String toString() {
-        return "Departamento [nome=" + nome + ", funcionarios=" + funcionarios + "]";
+        return "\nDepartamento [nome=" + nome + ", \nfuncionarios=" + funcionarios + "]";
     }
-
-    public Funcionario buscarFuncionario(String nome){
-        return funcionarios                
-            .stream()
-            .filter(d -> d.getNome().toLowerCase().equals(nome.toLowerCase()))
-            .findFirst()
-            .orElse(null);
-    }
-
-    public Funcionario buscaCPF(int cpf){
-        return funcionarios                
-            .stream()
-            .filter(d -> d.getCpf() == cpf)
-            .findFirst()
-            .orElse(null);
-    }
-
-    public void addFuncionario(Funcionario func){
-       if(buscarFuncionario(func.getNome()) == null && buscaCPF(func.getCpf()) == null) funcionarios.add(func);
-    }
-
-    public void removeFuncionario(Funcionario func){
-       if(buscarFuncionario(func.getNome()) != null) funcionarios.remove(func);
-    }
-    
-
-    
 }
